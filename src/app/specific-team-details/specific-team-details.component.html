@@ -2,9 +2,9 @@
   <div class="card-body">
     <div class="d-flex justify-content-between align-items-start">
       <div class="card-title">
-        <p class="mb-1">
+        <h5 class="mb-1">
           {{ team?.team?.full_name }} [{{ team?.team?.abbreviation }}]
-        </p>
+        </h5>
         <small>{{ team?.team?.conference }} conference</small>
       </div>
 
@@ -25,7 +25,7 @@
         <p>Results of past 12 days:</p>
         <div class="d-block">
           <span
-            class="badge badge-pill mr-2"
+            class="game-status mr-2"
             *ngFor="let game of team?.games"
             [class.badge-success]="game?.win"
             [class.badge-danger]="!game?.win"
