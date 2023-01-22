@@ -2,16 +2,17 @@
   <div class="row mt-4">
     <div class="col-lg-4">
       <div class="d-flex justify-content-start align-items-center">
-        <select
-          class="form-control"
-          id="teamInput"
-          style="min-width: 100px; max-width: 20vw;"
-          [(ngModel)]="teamId"
-        >
-          <option *ngFor="let item of appService.totalTeams" [value]="item.id">
-            {{ item.full_name }}
-          </option>
-        </select>
+        <mat-form-field>
+          <mat-select
+                  id="teamInput"
+                  style="min-width: 100px; max-width: 200px;"
+                  [(ngModel)]="teamId"
+          >
+            <mat-option *ngFor="let item of appService.teamsListData" [value]="item.id">
+              {{ item.full_name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
         <button
           class="btn btn-outline-info ml-3"

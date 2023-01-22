@@ -6,12 +6,13 @@ import {
   GameResponseModel,
   TeamListResponse,
 } from './base.model';
+import {getLastTwelveDays} from "./date.helper";
 
 const API_BASE_URL = 'https://free-nba.p.rapidapi.com';
 
 @Injectable()
 export class HttpService {
-  public totalTeams: TeamModel[] = [];
+  public teamsListData: TeamModel[] = [];
   public selectedTeams: SpecificTeamModel[] = [];
   public lastTwelveDays: string[] = [];
   public httpHeaders = new HttpHeaders();
@@ -25,20 +26,14 @@ export class HttpService {
       'X-RapidAPI-Host',
       'free-nba.p.rapidapi.com'
     );
-    for (
-      var date = new Date(new Date().setDate(new Date().getDate() - 12));
-      date <= new Date();
-      date.setDate(date.getDate() + 1)
-    ) {
-      this.lastTwelveDays.push(new Date(date).toISOString().slice(0, 10));
-    }
+    this.lastTwelveDays = getLastTwelveDays();
   }
 
   getAllTeamsAsAList() {
     this.httpClient
       .get(`${API_BASE_URL}/teams`, { headers: this.httpHeaders })
       .subscribe((response: TeamListResponse) => {
-        this.totalTeams = response.data;
+        this.teamsListData = response.data;
       });
   }
   setTeamDetails(teamId: number) {
@@ -48,7 +43,7 @@ export class HttpService {
     );
     if (selectedTeamIndex === -1) {
       this.selectedTeams.push({
-        team: this.totalTeams.find((item) => item.id === team),
+        team: this.teamsListData.find((item) => item.id === team),
         games: [],
       });
     }

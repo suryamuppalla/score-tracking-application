@@ -11,6 +11,8 @@ import { RouterModule } from '@angular/router';
 import { HttpService } from './http.service';
 import { SpecificGameDetailsComponent } from './specific-game-details/specific-game-details.component';
 import { CommonModule } from '@angular/common';
+import {MatSelectModule} from "@angular/material/select";
+import {MatFormFieldModule} from "@angular/material/form-field";
 
 @NgModule({
   imports: [
@@ -21,6 +23,8 @@ import { CommonModule } from '@angular/common';
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
+    MatSelectModule,
+    MatFormFieldModule
   ],
   declarations: [
     AppComponent,
