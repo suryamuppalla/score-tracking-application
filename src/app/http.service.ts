@@ -1,41 +1,37 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {Injectable} from '@angular/core';
 import {
   SpecificTeamModel,
   TeamModel,
   GameResponseModel,
   TeamListResponse,
 } from './base.model';
-import { getLastTwelveDays } from './date.helper';
+import {getLastTwelveDays} from './date.helper';
 
 const API_BASE_URL = 'https://free-nba.p.rapidapi.com';
+let httpHeaders = new HttpHeaders();
+httpHeaders = httpHeaders.append('X-RapidAPI-Key', '2QMXSehDLSmshDmRQcKUIAiQjIZAp1UvKUrjsnewgqSP6F5oBX');
+httpHeaders = httpHeaders.append('X-RapidAPI-Host', 'free-nba.p.rapidapi.com');
 
 @Injectable()
 export class HttpService {
   public teamsListData: TeamModel[] = [];
   public selectedTeams: SpecificTeamModel[] = [];
   public lastTwelveDays: string[] = [];
-  public httpHeaders = new HttpHeaders();
+
 
   constructor(private httpClient: HttpClient) {
-    this.httpHeaders = this.httpHeaders.append(
-      'X-RapidAPI-Key',
-      '2QMXSehDLSmshDmRQcKUIAiQjIZAp1UvKUrjsnewgqSP6F5oBX'
-    );
-    this.httpHeaders = this.httpHeaders.append(
-      'X-RapidAPI-Host',
-      'free-nba.p.rapidapi.com'
-    );
     this.lastTwelveDays = getLastTwelveDays();
   }
 
   getAllTeamsAsAList() {
     this.httpClient
-      .get(`${API_BASE_URL}/teams`, { headers: this.httpHeaders })
-      .subscribe((response: TeamListResponse) => {
-        this.teamsListData = response.data;
+      .get(`${API_BASE_URL}/teams`, {headers: httpHeaders})
+      .subscribe((teamsResponse: TeamListResponse) => {
+        this.teamsListData = teamsResponse.data;
       });
   }
+
   setTeamDetails(teamId: number) {
     const team = Number(teamId);
     const teamIndex = this.selectedTeams.findIndex(
@@ -60,13 +56,13 @@ export class HttpService {
     httpParams = httpParams.append('team_ids[]', team.team.id);
     this.httpClient
       .get(`${API_BASE_URL}/games`, {
-        headers: this.httpHeaders,
+        headers: httpHeaders,
         params: httpParams,
       })
-      .subscribe((response: GameResponseModel) => {
+      .subscribe((gameDetails: GameResponseModel) => {
         let averageScore = 0;
         let conceededScore = 0;
-        response.data?.forEach((data) => {
+        gameDetails.data?.forEach((data) => {
           data.win = data.home_team_score - data.visitor_team_score > 0;
           if (data.home_team?.id === team.team.id) {
             averageScore += data.home_team_score;
@@ -78,8 +74,8 @@ export class HttpService {
           }
           team.games.push(data);
         });
-        team.averageScore = Math.round(averageScore / response.data.length);
-        team.conceededScore = Math.round(conceededScore / response.data.length);
+        team.averageScore = Math.round(averageScore / gameDetails.data.length);
+        team.conceededScore = Math.round(conceededScore / gameDetails.data.length);
       });
   }
 }
