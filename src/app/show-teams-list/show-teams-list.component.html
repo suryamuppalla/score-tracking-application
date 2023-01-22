@@ -1,0 +1,38 @@
+<div class="d-block">
+  <div class="row mt-4">
+    <div class="col-lg-4">
+      <div class="d-flex justify-content-start align-items-center">
+        <select
+          class="form-control"
+          id="teamInput"
+          style="min-width: 100px; max-width: 20vw;"
+          [(ngModel)]="teamId"
+        >
+          <option *ngFor="let item of appService.totalTeams" [value]="item.id">
+            {{ item.full_name }}
+          </option>
+        </select>
+
+        <button
+          class="btn btn-danger ml-3"
+          id="trackBtn"
+          (click)="appService.setTeamDetails(teamId)"
+        >
+          Track Team
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div
+      class="col-lg-4"
+      *ngFor="let team of appService.selectedTeams; let index = index"
+    >
+      <app-team-details
+        [team]="team"
+        (emitter)="removeTeam(index)"
+      ></app-team-details>
+    </div>
+  </div>
+</div>

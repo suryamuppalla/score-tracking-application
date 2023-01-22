@@ -1,0 +1,71 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <div class="d-flex justify-content-between align-items-start">
+      <div class="card-title">
+        <p class="mb-1">
+          {{ team?.team?.full_name }} [{{ team?.team?.abbreviation }}]
+        </p>
+        <small>{{ team?.team?.conference }} conference</small>
+      </div>
+
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+        id="remove{{ team?.team?.abbreviation }}"
+        (click)="removeFromList()"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <hr />
+    <div class="media">
+      <div class="media-body">
+        <p>Results of past 12 days:</p>
+        <div class="d-block">
+          <span
+            class="badge badge-pill mr-2"
+            *ngFor="let game of team?.games"
+            [class.badge-success]="game?.win"
+            [class.badge-danger]="!game?.win"
+          >
+            {{ game?.win ? 'W' : 'L' }}</span
+          >
+        </div>
+
+        <div class="d-block mt-2" *ngIf="team?.averageScore">
+          Avg pts scored: {{ team?.averageScore }}
+        </div>
+        <div class="d-block" *ngIf="team?.conceededScore">
+          Avg pts conceeded: {{ team?.conceededScore }}
+        </div>
+      </div>
+      <div class="media-right">
+        <a>
+          <img
+            class="media-object"
+            height="100"
+            width="100"
+            [src]="
+              'https://interstate21.com/nba-logos/' +
+              team?.team?.abbreviation +
+              '.png'
+            "
+            alt="{{ team?.team?.abbreviation }}"
+          />
+        </a>
+      </div>
+    </div>
+
+    <div class="d-block mt-3">
+      <button
+        class="btn btn-md btn-success"
+        id="results{{ team?.team?.abbreviation }}"
+        [routerLink]="['results', team?.team?.abbreviation]"
+      >
+        See Game Results >>>
+      </button>
+    </div>
+  </div>
+</div>
