@@ -1,12 +1,22 @@
-<mat-card class="mat-elevation-z6 mb-3">
-  <mat-card-content>
+<div class="card mb-3">
+  <div class="card-body">
     <div class="d-flex justify-content-between align-items-start">
       <div class="card-title">
         <h5 class="mb-1">
-          <span class="d-inline-flex justify-content-center align-items-center logo border border-success">
+          <span
+            class="
+              d-inline-flex
+              justify-content-center
+              align-items-center
+              logo
+              border border-success
+            "
+          >
             {{ specificTeam?.team?.full_name?.substr(0, 1) }}
           </span>
-          {{ specificTeam?.team?.full_name }} [{{ specificTeam?.team?.abbreviation }}]
+          {{ specificTeam?.team?.full_name }} [{{
+            specificTeam?.team?.abbreviation
+          }}]
         </h5>
         <small>{{ specificTeam?.team?.conference }} conference</small>
       </div>
@@ -65,12 +75,12 @@
 
     <div class="d-block mt-3">
       <button
-        class="btn btn-md btn-outline-success"
+        class="btn btn-sm btn-outline-success"
         id="results{{ specificTeam?.team?.abbreviation }}"
         [routerLink]="['results', specificTeam?.team?.abbreviation]"
       >
         See Game Results >>>
       </button>
     </div>
-  </mat-card-content>
-</mat-card>
+  </div>
+</div>
