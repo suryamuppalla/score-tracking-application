@@ -1,9 +1,11 @@
 <div class="d-block">
   <div class="row mt-4">
     <div class="col-lg-4">
+      <label>Select A Team To Track</label>
       <div class="d-flex justify-content-start align-items-start">
         <select
           class="form-control"
+          placeholder="Select Team To Track"
           id="teamInput"
           style="min-width: 100px; max-width: 200px;"
           [(ngModel)]="teamId"
@@ -19,7 +21,8 @@
         <button
           class="btn btn-info ml-3"
           id="trackBtn"
-          (click)="appService.setTeamDetails(teamId)"
+          [disabled]="!teamId"
+          (click)="appService.setTeamDetails(teamId); teamId = null"
         >
           Track Team
         </button>

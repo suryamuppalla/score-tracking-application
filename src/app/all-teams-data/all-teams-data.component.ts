@@ -7,7 +7,7 @@ import { HttpService } from '../http.service';
   styleUrls: ['./all-teams-data.component.css'],
 })
 export class AllTeamsDataComponent implements OnInit {
-  public teamId: number = null;
+  public teamId: number;
   constructor(public appService: HttpService) {}
 
   ngOnInit() {
