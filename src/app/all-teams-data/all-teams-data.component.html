@@ -30,15 +30,19 @@
     </div>
   </div>
 
-  <div class="row mt-3">
-    <div
-      class="col-lg-4"
-      *ngFor="let team of appService.selectedTeams; let index = index"
-    >
-      <app-specific-team-details
-        [specificTeam]="team"
-        (emitter)="removeTeam(index)"
-      ></app-specific-team-details>
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="row mt-3">
+        <div
+          class="col-lg-6"
+          *ngFor="let team of appService.selectedTeams; let index = index"
+        >
+          <app-specific-team-details
+            [specificTeam]="team"
+            (emitter)="removeTeam(index)"
+          ></app-specific-team-details>
+        </div>
+      </div>
     </div>
   </div>
 </div>
