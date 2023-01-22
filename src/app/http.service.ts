@@ -6,7 +6,7 @@ import {
   GameResponseModel,
   TeamListResponse,
 } from './base.model';
-import {getLastTwelveDays} from "./date.helper";
+import { getLastTwelveDays } from './date.helper';
 
 const API_BASE_URL = 'https://free-nba.p.rapidapi.com';
 
@@ -38,10 +38,10 @@ export class HttpService {
   }
   setTeamDetails(teamId: number) {
     const team = Number(teamId);
-    const selectedTeamIndex = this.selectedTeams.findIndex(
+    const teamIndex = this.selectedTeams.findIndex(
       (item) => item.team.id === team
     );
-    if (selectedTeamIndex === -1) {
+    if (teamIndex === -1) {
       this.selectedTeams.push({
         team: this.teamsListData.find((item) => item.id === team),
         games: [],
