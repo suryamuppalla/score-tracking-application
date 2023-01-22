@@ -1,7 +1,7 @@
 <div class="d-block">
     <div class="row mt-4">
         <div class="col-lg-4">
-            <div class="d-flex justify-content-start align-items-center">
+            <div class="d-flex justify-content-start align-items-start">
                 <mat-form-field>
                     <mat-select
                             id="teamInput"
@@ -14,15 +14,13 @@
                     </mat-select>
                 </mat-form-field>
 
-                <mat-form-field>
-                    <button mat-button color="primary"
-                            class="ml-3"
-                            id="trackBtn"
-                            (click)="appService.setTeamDetails(teamId)"
-                    >
-                        Track Team
-                    </button>
-                </mat-form-field>
+                <button mat-button color="primary"
+                        class="ml-3"
+                        id="trackBtn"
+                        (click)="appService.setTeamDetails(teamId)"
+                >
+                    Track Team
+                </button>
             </div>
         </div>
     </div>
