@@ -29,10 +29,10 @@
       class="col-lg-4"
       *ngFor="let team of appService.selectedTeams; let index = index"
     >
-      <app-team-details
+      <app-specific-team-details
         [team]="team"
         (emitter)="removeTeam(index)"
-      ></app-team-details>
+      ></app-specific-team-details>
     </div>
   </div>
 </div>
