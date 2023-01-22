@@ -11,7 +11,7 @@ export class AllTeamsDataComponent implements OnInit {
   constructor(public appService: HttpService) {}
 
   ngOnInit() {
-    this.appService.fetchTeamsInformation();
+    this.appService.getAllTeamsAsAList();
   }
 
   removeTeam(teamIndex: number) {

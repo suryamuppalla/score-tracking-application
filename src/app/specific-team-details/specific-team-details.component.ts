@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { SpecificTeamModel } from '../models/base.model';
+import { SpecificTeamModel } from '../base.model';
 import { HttpService } from '../http.service';
 
 @Component({

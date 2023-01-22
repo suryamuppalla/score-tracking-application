@@ -5,7 +5,7 @@ import {
   TeamModel,
   GameResponseModel,
   TeamListResponse,
-} from './models/base.model';
+} from './base.model';
 
 const API_BASE_URL = 'https://free-nba.p.rapidapi.com';
 
@@ -34,7 +34,7 @@ export class HttpService {
     }
   }
 
-  fetchTeamsInformation() {
+  getAllTeamsAsAList() {
     this.httpClient
       .get(`${API_BASE_URL}/teams`, { headers: this.httpHeaders })
       .subscribe((response: TeamListResponse) => {
