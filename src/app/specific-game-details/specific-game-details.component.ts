@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { ApplicationService } from '../application.service';
-import { SelectedTeamEntity } from '../models/application.model';
+import { HttpService } from '../http.service';
+import { SpecificTeamModel } from '../models/base.model';
 
 @Component({
-  selector: 'app-team-game-details',
-  templateUrl: './team-game-details.component.html',
-  styleUrls: ['./team-game-details.component.css'],
+  selector: 'app-specific-game-details',
+  templateUrl: './specific-game-details.component.html',
+  styleUrls: ['./specific-game-details.component.css'],
 })
-export class TeamGameDetailsComponent implements OnInit {
-  public team: SelectedTeamEntity;
+export class SpecificGameDetailsComponent implements OnInit {
+  public team: SpecificTeamModel;
   constructor(
-    private appService: ApplicationService,
+    private appService: HttpService,
     private activatedRoute: ActivatedRoute,
     public location: Location
   ) {

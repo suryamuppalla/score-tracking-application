@@ -1,18 +1,18 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
-  SelectedTeamEntity,
-  TeamEntity,
-  TeamGameResponse,
+  SpecificTeamModel,
+  TeamModel,
+  GameResponseModel,
   TeamListResponse,
-} from './models/application.model';
+} from './models/base.model';
 
 const API_BASE_URL = 'https://free-nba.p.rapidapi.com';
 
 @Injectable()
-export class ApplicationService {
-  public totalTeams: TeamEntity[] = [];
-  public selectedTeams: SelectedTeamEntity[] = [];
+export class HttpService {
+  public totalTeams: TeamModel[] = [];
+  public selectedTeams: SpecificTeamModel[] = [];
   public lastTwelveDays: string[] = [];
   public httpHeaders = new HttpHeaders();
 
@@ -54,7 +54,7 @@ export class ApplicationService {
     }
   }
 
-  fetchGamesList(team: SelectedTeamEntity) {
+  fetchGamesList(team: SpecificTeamModel) {
     if (team.games?.length) {
       return;
     }
@@ -68,7 +68,7 @@ export class ApplicationService {
         headers: this.httpHeaders,
         params: httpParams,
       })
-      .subscribe((response: TeamGameResponse) => {
+      .subscribe((response: GameResponseModel) => {
         let averageScore = 0;
         let conceededScore = 0;
         response.data?.forEach((data) => {

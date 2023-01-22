@@ -4,12 +4,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ShowTeamsListComponent } from './show-teams-list/show-teams-list.component';
+import { AllTeamsDataComponent } from './all-teams-data/all-teams-data.component';
 import { HttpClientModule } from '@angular/common/http';
-import { TeamDetailsComponent } from './team-details/team-details.component';
+import { SpecificTeamDetailsComponent } from './specific-team-details/specific-team-details.component';
 import { RouterModule } from '@angular/router';
-import { ApplicationService } from './application.service';
-import { TeamGameDetailsComponent } from './team-game-details/team-game-details.component';
+import { HttpService } from './http.service';
+import { SpecificGameDetailsComponent } from './specific-game-details/specific-game-details.component';
 import { CommonModule } from '@angular/common';
 
 @NgModule({
@@ -24,11 +24,11 @@ import { CommonModule } from '@angular/common';
   ],
   declarations: [
     AppComponent,
-    ShowTeamsListComponent,
-    TeamDetailsComponent,
-    TeamGameDetailsComponent,
+    AllTeamsDataComponent,
+    SpecificTeamDetailsComponent,
+    SpecificGameDetailsComponent,
   ],
   bootstrap: [AppComponent],
-  providers: [ApplicationService],
+  providers: [HttpService],
 })
 export class AppModule {}
