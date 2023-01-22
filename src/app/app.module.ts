@@ -13,6 +13,7 @@ import { SpecificGameDetailsComponent } from './specific-game-details/specific-g
 import { CommonModule } from '@angular/common';
 import {MatSelectModule} from "@angular/material/select";
 import {MatFormFieldModule} from "@angular/material/form-field";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     AppRoutingModule,
     HttpClientModule,
     MatSelectModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    BrowserAnimationsModule
   ],
   declarations: [
     AppComponent,
