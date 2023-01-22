@@ -54,7 +54,7 @@ export class HttpService {
     }
   }
 
-  fetchGamesList(team: SpecificTeamModel) {
+  getGamesOfSpecificTeam(team: SpecificTeamModel) {
     if (team.games?.length) {
       return;
     }

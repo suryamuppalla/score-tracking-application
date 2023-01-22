@@ -4,11 +4,11 @@
       <div class="card-title">
         <h5 class="mb-1">
           <span class="d-inline-flex justify-content-center align-items-center logo border border-success">
-            {{ team?.team?.full_name?.substr(0, 1) }}
+            {{ specificTeam?.team?.full_name?.substr(0, 1) }}
           </span>
-          {{ team?.team?.full_name }} [{{ team?.team?.abbreviation }}]
+          {{ specificTeam?.team?.full_name }} [{{ specificTeam?.team?.abbreviation }}]
         </h5>
-        <small>{{ team?.team?.conference }} conference</small>
+        <small>{{ specificTeam?.team?.conference }} conference</small>
       </div>
 
       <button
@@ -16,8 +16,8 @@
         class="close"
         data-dismiss="alert"
         aria-label="Close"
-        id="remove{{ team?.team?.abbreviation }}"
-        (click)="removeFromList()"
+        id="remove{{ specificTeam?.team?.abbreviation }}"
+        (click)="emitter.emit(specificTeam)"
       >
         <span aria-hidden="true">&times;</span>
       </button>
@@ -29,7 +29,7 @@
         <div class="d-block">
           <span
             class="game-status border mr-2"
-            *ngFor="let game of team?.games"
+            *ngFor="let game of specificTeam?.games"
             [class.text-success]="game?.win"
             [class.text-danger]="!game?.win"
             [class.border-success]="game?.win"
@@ -39,11 +39,11 @@
           >
         </div>
 
-        <div class="d-block mt-2" *ngIf="team?.averageScore">
-          Avg pts scored: <strong>{{ team?.averageScore }}</strong>
+        <div class="d-block mt-2" *ngIf="specificTeam?.averageScore">
+          Avg pts scored: <strong>{{ specificTeam?.averageScore }}</strong>
         </div>
-        <div class="d-block" *ngIf="team?.conceededScore">
-          Avg pts conceeded: <strong>{{ team?.conceededScore }}</strong>
+        <div class="d-block" *ngIf="specificTeam?.conceededScore">
+          Avg pts conceeded: <strong>{{ specificTeam?.conceededScore }}</strong>
         </div>
       </div>
       <div class="media-right">
@@ -54,10 +54,10 @@
             width="100"
             [src]="
               'https://interstate21.com/nba-logos/' +
-              team?.team?.abbreviation +
+              specificTeam?.team?.abbreviation +
               '.png'
             "
-            alt="{{ team?.team?.abbreviation }}"
+            alt="{{ specificTeam?.team?.abbreviation }}"
           />
         </a>
       </div>
@@ -66,8 +66,8 @@
     <div class="d-block mt-3">
       <button
         class="btn btn-md btn-outline-success"
-        id="results{{ team?.team?.abbreviation }}"
-        [routerLink]="['results', team?.team?.abbreviation]"
+        id="results{{ specificTeam?.team?.abbreviation }}"
+        [routerLink]="['results', specificTeam?.team?.abbreviation]"
       >
         See Game Results >>>
       </button>

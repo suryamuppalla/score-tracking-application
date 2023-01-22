@@ -8,15 +8,11 @@ import { HttpService } from '../http.service';
   styleUrls: ['./specific-team-details.component.css'],
 })
 export class SpecificTeamDetailsComponent implements OnInit {
-  @Input() team: SpecificTeamModel;
+  @Input() specificTeam: SpecificTeamModel;
   @Output() emitter: EventEmitter<SpecificTeamModel> = new EventEmitter();
   constructor(public appService: HttpService) {}
 
   ngOnInit() {
-    this.appService.fetchGamesList(this.team);
-  }
-
-  removeFromList() {
-    this.emitter.emit(this.team);
+    this.appService.getGamesOfSpecificTeam(this.specificTeam);
   }
 }

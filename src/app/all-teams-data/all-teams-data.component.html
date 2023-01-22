@@ -30,7 +30,7 @@
       *ngFor="let team of appService.selectedTeams; let index = index"
     >
       <app-specific-team-details
-        [team]="team"
+        [specificTeam]="team"
         (emitter)="removeTeam(index)"
       ></app-specific-team-details>
     </div>
